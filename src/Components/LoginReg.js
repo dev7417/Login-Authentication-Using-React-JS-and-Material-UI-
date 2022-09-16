@@ -3,6 +3,7 @@ import { Grid, Card, Typography, Tabs, Tab, Box } from "@mui/material";
 import Pic from "../Images/Pic-1.png";
 import { fontWeight } from "@mui/system";
 import UserLogin from "./UserLogin";
+import Register from "./Register";
 
 
 const TabPanel = (props) => {
@@ -49,7 +50,7 @@ export default function LoginReg() {
             </Tabs>
           </Box>
             <TabPanel value={value} index={0}  sx={{fontWeight:'bold', textTransform:'upperCase'}}><UserLogin/></TabPanel>
-            <TabPanel value={value} index={1}>User Registration</TabPanel>
+            <TabPanel value={value} index={1}><Register/></TabPanel>
           </Box> 
           </Card>
         </Grid>

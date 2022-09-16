@@ -24,7 +24,8 @@ export default function UserLogin() {
         }
 
         if (actualData.email && actualData.password) {
-            console.log(actualData)
+            console.log(actualData);
+            document.getElementById('login-form').reset()
             setOpen(true)
         } else {
             console.log('Please fill the required field')
@@ -43,7 +44,7 @@ export default function UserLogin() {
     const action = (
         <>
             <Button color="secondary" size="small" onClick={handleClose}>
-                Data Submitted Successfully
+              
             </Button>
             <IconButton
                 size="small"
@@ -64,6 +65,7 @@ export default function UserLogin() {
                 id="login-form"
                 onClick={handleOnClick}
             >
+                
                 <TextField
                     required
                     margin="normal"
@@ -91,17 +93,18 @@ export default function UserLogin() {
                     </Button>
                 </Box>
                 <NavLink to="/">Forgot Password?</NavLink>
-            </Box>
-
-            <Box>
                 <Snackbar
                     open={open}
                     autoHideDuration={6000}
                     onClose={handleClose}
-                    message="Note archived"
+                    message="Data Submitted Successfully"
                     action={action}
                 />
             </Box>
+
+           
+                
+            
         </>
     )
 }
