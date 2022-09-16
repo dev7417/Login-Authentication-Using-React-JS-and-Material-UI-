@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Grid, Card, Typography, Tabs, Tab, Box } from "@mui/material";
-import Pic from "../Images/Pic-1.png";
+import Pic from "../Images/Pic-3.png";
 import { fontWeight } from "@mui/system";
 import UserLogin from "./UserLogin";
 import Register from "./Register";
@@ -28,7 +28,7 @@ export default function LoginReg() {
   return (
     <>
       <Grid container sx={{ height: "90vh" }}>
-        <Grid
+        <Grid textAlign = "left"
           item
           lg={7}
           sm={5}
@@ -38,10 +38,11 @@ export default function LoginReg() {
             backgroundSize: "cover",
             backgroundPosition: "center",
             display:{xs:'none', sm:'block'}
+           
           }}
         ></Grid>
         <Grid item lg={5} sm={7} xs={12} >
-          <Card sx={{width:'100%', height:'100%',}}>
+          <Card sx={{width:'100%', height:'100%',py:5}}>
             <Box>
           <Box sx={{borderBottom:1, borderColor:'divider'}}>
             <Tabs value={value} textColor="secondary" indicatorColor='secondary' onChange={handleChange}>

@@ -1,7 +1,9 @@
 import React from "react";
-import { Button, Alert, Typography, Box, from, TextField } from "@mui/material";
+import { Button, Alert, Typography, Box, form, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+    const navigate = useNavigate();
   const registerOnClick = (e) => {
     e.preventDefault();
     const registerData = new FormData(e.currentTarget);
@@ -15,6 +17,7 @@ export default function Register() {
     };
     if(mainData.Name && mainData.email && mainData.password === mainData.Confirmpass){
         console.log(mainData);
+        navigate('<UserLogin/>')
         console.log("Data Submitted Successfully");
 
     }else{

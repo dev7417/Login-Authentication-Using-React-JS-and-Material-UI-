@@ -92,7 +92,7 @@ export default function UserLogin() {
                         Login in
                     </Button>
                 </Box>
-                <NavLink to="/">Forgot Password?</NavLink>
+                <NavLink to="/sendresetemail">Forgot Password?</NavLink>
                 <Snackbar
                     open={open}
                     autoHideDuration={6000}
