@@ -6,13 +6,12 @@ export default function Register() {
   const [error, setError] = useState({
     status: false,
     msg: "",
-    type: ""
-  })
-    const navigate = useNavigate();
+    type: "",
+  });
+  const navigate = useNavigate();
   const registerOnClick = (e) => {
     e.preventDefault();
     const registerData = new FormData(e.currentTarget);
-
 
     const mainData = {
       Name: registerData.get("Name"),
@@ -20,21 +19,30 @@ export default function Register() {
       password: registerData.get("password"),
       Confirmpass: registerData.get("Confirmpass"),
     };
-    if(mainData.Name && mainData.email){
-     if(mainData.password === mainData.Confirmpass){
+    if (mainData.Name && mainData.email) {
+      if (mainData.password === mainData.Confirmpass) {
         console.log(mainData);
         console.log("Data Submitted Successfully");
-        const localData = localStorage.setItem("data", JSON.stringify(mainData))
-        setError({status:true, msg:"Data Submitted Successfully", type:"success"})
-        setTimeout(() => {
-          navigate('/dashboard');
-          
-        }, 3000);
-      }
+        const localData = localStorage.setItem(
+          "data",
+          JSON.stringify(mainData)
+        );
+        setError({status:true, msg:"you have successfully registered, you will be redirected: Shortly", type:"success"})
 
-    }else{
-        console.log("Sorry")
-        setError({status:true, msg:"Please Filled The Required Fields", type:"error"}); 
+      setTimeout(()=>{
+        navigate("/dashboard");
+      }, 3000)  
+      }if(mainData.password!==mainData.Confirmpass){
+        console.log("you are not allowed");
+        setError({status: true, msg:"Your Password Doesnot match", type:"error"})
+      }
+    } else {
+      console.log("Sorry");
+      setError({
+        status: true,
+        msg: "Please Filled The Required Fields",
+        type: "error",
+      });
     }
   };
   return (
@@ -43,7 +51,7 @@ export default function Register() {
         component="form"
         noValidate
         id="register-form"
-        onClick={registerOnClick}
+        onSubmit={registerOnClick}
       >
         <TextField
           fullWidth
@@ -84,7 +92,7 @@ export default function Register() {
           <Button
             type="Submit"
             variant="contained"
-            sx={{ mt: 3, mb: 2, px: 2 }}  
+            sx={{ mt: 3, mb: 2, px: 2 }}
           >
             Sign Up
           </Button>
