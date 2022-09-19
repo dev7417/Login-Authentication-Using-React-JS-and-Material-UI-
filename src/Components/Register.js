@@ -26,8 +26,11 @@ export default function Register() {
         console.log("Data Submitted Successfully");
         const localData = localStorage.setItem("data", JSON.stringify(mainData))
         setError({status:true, msg:"Data Submitted Successfully", type:"success"})
+        setTimeout(() => {
+          navigate('/dashboard');
+          
+        }, 3000);
       }
-      // navigate('/userlogin');
 
     }else{
         console.log("Sorry")
