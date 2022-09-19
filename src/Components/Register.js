@@ -15,10 +15,13 @@ export default function Register() {
       password: registerData.get("password"),
       Confirmpass: registerData.get("Confirmpass"),
     };
-    if(mainData.Name && mainData.email && mainData.password === mainData.Confirmpass){
+    if(mainData.Name && mainData.email){
+     if(mainData.password === mainData.Confirmpass){
         console.log(mainData);
-        navigate('<UserLogin/>')
         console.log("Data Submitted Successfully");
+        const localData = localStorage.setItem("data", JSON.stringify(mainData))
+      }
+      navigate('/userlogin');
 
     }else{
         console.log("Sorry")
@@ -54,6 +57,7 @@ export default function Register() {
           name="password"
           required
           label="Password"
+          type="password"
           id="password"
           margin="normal"
         />
@@ -62,6 +66,7 @@ export default function Register() {
           name="Confirmpass"
           required
           id="Confirmpass"
+          type="password"
           label="Confirm Password"
           margin="normal"
         />
@@ -69,7 +74,7 @@ export default function Register() {
           <Button
             type="Submit"
             variant="contained"
-            sx={{ mt: 3, mb: 2, px: 2 }}
+            sx={{ mt: 3, mb: 2, px: 2 }}  
           >
             Sign Up
           </Button>
