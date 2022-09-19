@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Grid, Typography, Box, Button, CssBaseline, Alert } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import ChangePassword from './ChangePassword';
 
 export default function Dashboard() {
     const[error, setError] = useState({
@@ -15,7 +16,7 @@ export default function Dashboard() {
   return (
     <>
         <CssBaseline/>
-        <Grid>
+        <Grid container sx={{mt:5, mx:5}}>
             <Grid item sm ={4} sx={{backgroundColor:'gray', p:5, color:'white'}}>
                 <Typography variant='h5'>Email: hello@gmail.com</Typography>
                 <Typography variant='h4' sx={{mt:2}}>Peter</Typography>
@@ -23,7 +24,7 @@ export default function Dashboard() {
             </Grid>
 
             <Grid item sm={8}>
-
+            <ChangePassword/>
             </Grid>
         </Grid>
     </>
