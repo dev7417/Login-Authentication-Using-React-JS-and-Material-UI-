@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     form,
     TextField,
@@ -14,6 +14,11 @@ import { NavLink } from 'react-router-dom'
 
 export default function UserLogin() {
     const [open, setOpen] = React.useState(false) //use useState hook for display the snackbar when we submit the form data
+    const [error, setError] = useState({
+        status: false,
+        msg: "",
+        type:""
+    });
     const handleOnClick = (e) => {
         e.preventDefault()
         const data = new FormData(e.currentTarget)
@@ -27,9 +32,12 @@ export default function UserLogin() {
             console.log(actualData);
             document.getElementById('login-form').reset()
             setOpen(true)
-        } else {
+            setError({status:true, msg:"Data Submitted Successfully",type:"success"});
+            
+        }    else {
             console.log('Please fill the required field')
             setOpen(false)
+            setError({status:true, msg:"Please Filled The required Fields", type:"error"});
         }
     }
     const handleClose = (event, reason) => {
@@ -93,6 +101,7 @@ export default function UserLogin() {
                     </Button>
                 </Box>
                 <NavLink to="/sendresetemail">Forgot Password?</NavLink>
+                <Alert severity={error.type} autoHideDuration={6000}>{error.msg}</Alert>
                 <Snackbar
                     open={open}
                     autoHideDuration={6000}
@@ -100,11 +109,7 @@ export default function UserLogin() {
                     message="Data Submitted Successfully"
                     action={action}
                 />
-            </Box>
-
-           
-                
-            
+            </Box>   
         </>
     )
 }
