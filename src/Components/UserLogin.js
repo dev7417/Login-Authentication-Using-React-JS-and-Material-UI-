@@ -101,7 +101,8 @@ export default function UserLogin() {
                     </Button>
                 </Box>
                 <NavLink to="/sendresetemail">Forgot Password?</NavLink>
-                <Alert severity={error.type} autoHideDuration={6000}>{error.msg}</Alert>
+                <Alert severity={error.type}>{error.msg}</Alert>
+                
                 <Snackbar
                     open={open}
                     autoHideDuration={6000}

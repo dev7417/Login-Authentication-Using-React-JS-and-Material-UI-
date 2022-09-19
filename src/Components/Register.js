@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Alert, Typography, Box, form, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+  const [error, setError] = useState({
+    status: false,
+    msg: "",
+    type: ""
+  })
     const navigate = useNavigate();
   const registerOnClick = (e) => {
     e.preventDefault();
@@ -20,11 +25,13 @@ export default function Register() {
         console.log(mainData);
         console.log("Data Submitted Successfully");
         const localData = localStorage.setItem("data", JSON.stringify(mainData))
+        setError({status:true, msg:"Data Submitted Successfully", type:"success"})
       }
-      navigate('/userlogin');
+      // navigate('/userlogin');
 
     }else{
         console.log("Sorry")
+        setError({status:true, msg:"Please Filled The Required Fields", type:"error"}); 
     }
   };
   return (
@@ -79,6 +86,7 @@ export default function Register() {
             Sign Up
           </Button>
         </Box>
+        <Alert severity={error.type}>{error.msg}</Alert>
       </Box>
     </>
   );
