@@ -27,7 +27,7 @@ export default function SendResetPassword() {
     };
     console.log(getData);
     if (getData.email) {
-      // navigate('/resetpasswordform')
+      navigate('/resetpasswordform')
       setError({
         status: true,
         msg: "Data Submitted Successfully",
