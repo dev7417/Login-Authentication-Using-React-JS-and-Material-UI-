@@ -4,6 +4,8 @@ import Pic from "../Images/Pic-3.png";
 import { fontWeight } from "@mui/system";
 import UserLogin from "./UserLogin";
 import Register from "./Register";
+import LoadingSpinner from './LoadingSpinner'
+
 
 
 const TabPanel = (props) => {

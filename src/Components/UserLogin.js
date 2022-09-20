@@ -9,6 +9,7 @@ import {
     IconButton,
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
+import LoadingSpinner from './LoadingSpinner'
 
 import { NavLink, useNavigate } from 'react-router-dom'
 
@@ -19,6 +20,7 @@ export default function UserLogin() {
         msg: "",
         type:""
     });
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const handleOnClick = (e) => {
         e.preventDefault()
@@ -31,6 +33,7 @@ export default function UserLogin() {
         const userLoginData = localStorage.setItem('loginData', JSON.stringify(actualData));
 
         if (actualData.email && actualData.password) {
+            setIsLoading(true);
             console.log(actualData);
             document.getElementById('login-form').reset()
             setOpen(true)
@@ -71,15 +74,20 @@ export default function UserLogin() {
         </>
     )
     return (
-        <>
+  
+     <>
+     {isLoading?<LoadingSpinner/>:
+     
             <Box
                 component="form"
                 noValidate
                 sx={{ mt: 2 }}
                 id="login-form"
                 onClick={handleOnClick}
-            >
-                
+                >
+              <Box>
+
+              
                 <TextField
                     required
                     margin="normal"
@@ -97,7 +105,9 @@ export default function UserLogin() {
                     id="password"
                     label="Enter Your Password"
                 />
+                
                 <Box textAlign="center">
+                    
                     <Button
                         type="submit"
                         variant="contained"
@@ -106,9 +116,10 @@ export default function UserLogin() {
                         Login in
                     </Button>
                 </Box>
+
                 <NavLink to="/sendresetemail">Forgot Password?</NavLink>
                 <Alert severity={error.type}>{error.msg}</Alert>
-                
+                </Box> 
                 <Snackbar
                     open={open}
                     autoHideDuration={6000}
@@ -116,7 +127,10 @@ export default function UserLogin() {
                     message="Data Submitted Successfully"
                     action={action}
                 />
+          
             </Box>   
+}
         </>
+     
     )
 }
