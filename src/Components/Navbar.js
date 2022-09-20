@@ -1,9 +1,12 @@
 import React from 'react'
 import {AppBar, Box, Toolbar, Typography, Button} from '@mui/material'
 import { NavLink } from 'react-router-dom'
+import { Outlet } from "react-router-dom";
+
 
 export default function Navbar() {
   return (
+    <>
     <Box sx={{flexGrow:1}}>
         <AppBar position='static' color='secondary'>
             <Toolbar>
@@ -16,5 +19,7 @@ export default function Navbar() {
             </Toolbar>
         </AppBar>
     </Box>
+     <Outlet/>
+     </>
   )
 }

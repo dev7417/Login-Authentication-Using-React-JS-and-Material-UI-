@@ -10,7 +10,7 @@ import {
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 export default function UserLogin() {
     const [open, setOpen] = React.useState(false) //use useState hook for display the snackbar when we submit the form data
@@ -19,6 +19,7 @@ export default function UserLogin() {
         msg: "",
         type:""
     });
+    const navigate = useNavigate();
     const handleOnClick = (e) => {
         e.preventDefault()
         const data = new FormData(e.currentTarget)
@@ -27,12 +28,17 @@ export default function UserLogin() {
             email: data.get('email'),
             password: data.get('password'),
         }
+        const userLoginData = localStorage.setItem('loginData', JSON.stringify(actualData));
 
         if (actualData.email && actualData.password) {
             console.log(actualData);
             document.getElementById('login-form').reset()
             setOpen(true)
-            setError({status:true, msg:"Data Submitted Successfully",type:"success"});
+            setTimeout(()=>{
+                navigate('/dashboard')
+
+            }, 3000)
+            setError({status:true, msg:"Data Submitted Successfully !! You will be redirected shortly",type:"success"});
             
         }    else {
             console.log('Please fill the required field')
@@ -51,7 +57,7 @@ export default function UserLogin() {
     // for only snakbar
     const action = (
         <>
-            <Button color="secondary" size="small" onClick={handleClose}>
+            <Button color="secondary" size="small" onSubmit={handleClose}>
               
             </Button>
             <IconButton
