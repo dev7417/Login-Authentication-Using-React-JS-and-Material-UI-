@@ -9,8 +9,11 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ChangePassword from "./ChangePassword";
+import LoadingSpinner from "./LoadingSpinner";
+import "./loading.css";
 
 export default function Dashboard() {
+  const[isLoading, setLoading] = useState(false)  
   const [error, setError] = useState({
     status: false,
     msg: " ",
@@ -18,6 +21,7 @@ export default function Dashboard() {
   });
   const navigate = useNavigate();
   const handleLogOut = () => {
+    setLoading(true);
     localStorage.clear();
     setTimeout(() => {
       navigate("/LoginReg");
@@ -27,6 +31,8 @@ export default function Dashboard() {
   return (
     <>
       <CssBaseline />
+      {isLoading?<LoadingSpinner/>:
+      
       <Grid container sx={{ mt: 5, mx: 5 }}>
         <Grid
           item
@@ -52,6 +58,7 @@ export default function Dashboard() {
         </Grid>
         {/* <Alert severity={error.type}>{error.msg}</Alert> */}
       </Grid>
+}
     </>
   );
 }
