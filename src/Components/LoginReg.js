@@ -23,13 +23,16 @@ const TabPanel = (props) => {
 
 export default function LoginReg() {
   const [value, setValue] = useState(0);
+  const [isLoading, setLoading] = useState(false);
   const handleChange = (event, newValue)=>{
     setValue(newValue);
 
   }
   return (
     <>
+        {isLoading ? <LoadingSpinner/> : 
       <Grid container sx={{ height: "90vh" }}>
+        
         <Grid textAlign = "left"
           item
           lg={7}
@@ -52,12 +55,13 @@ export default function LoginReg() {
               <Tab label='Registration' sx = {{textTransform:'none', fontWeight:'bold'}}></Tab>
             </Tabs>
           </Box>
-            <TabPanel value={value} index={0}  sx={{fontWeight:'bold', textTransform:'upperCase'}}><UserLogin/></TabPanel>
+            <TabPanel value={value} index={0}  sx={{fontWeight:'bold', textTransform:'upperCase'}}><UserLogin component={setLoading}/></TabPanel>
             <TabPanel value={value} index={1}><Register/></TabPanel>
           </Box> 
           </Card>
         </Grid>
       </Grid>
+}
     </>
   );
 }

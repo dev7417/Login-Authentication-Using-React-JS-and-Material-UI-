@@ -13,14 +13,14 @@ import LoadingSpinner from './LoadingSpinner'
 
 import { NavLink, useNavigate } from 'react-router-dom'
 
-export default function UserLogin() {
+export default function UserLogin({component}) {
     const [open, setOpen] = React.useState(false) //use useState hook for display the snackbar when we submit the form data
     const [error, setError] = useState({
         status: false,
         msg: "",
         type:""
     });
-    const [isLoading, setIsLoading] = useState(false);
+    // const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const handleOnClick = (e) => {
         e.preventDefault()
@@ -33,7 +33,7 @@ export default function UserLogin() {
         const userLoginData = localStorage.setItem('loginData', JSON.stringify(actualData));
 
         if (actualData.email && actualData.password) {
-            setIsLoading(true);
+            component(true)
             console.log(actualData);
             document.getElementById('login-form').reset()
             setOpen(true)
@@ -76,7 +76,7 @@ export default function UserLogin() {
     return (
   
      <>
-     {isLoading?<LoadingSpinner/>:
+     {/* {isLoading?<LoadingSpinner/>: */}
      
             <Box
                 component="form"
@@ -129,7 +129,7 @@ export default function UserLogin() {
                 />
           
             </Box>   
-}
+{/* } */}
         </>
      
     )
