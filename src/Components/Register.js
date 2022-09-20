@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Alert, Typography, Box, form, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-export default function Register() {
+export default function Register({component2}) {
   const [error, setError] = useState({
     status: false,
     msg: "",
@@ -23,6 +23,7 @@ export default function Register() {
       if (mainData.password === mainData.Confirmpass) {
         console.log(mainData);
         console.log("Data Submitted Successfully");
+        component2(true);
         const localData = localStorage.setItem(
           "data",
           JSON.stringify(mainData)

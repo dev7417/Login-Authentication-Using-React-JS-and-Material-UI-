@@ -56,7 +56,7 @@ export default function LoginReg() {
             </Tabs>
           </Box>
             <TabPanel value={value} index={0}  sx={{fontWeight:'bold', textTransform:'upperCase'}}><UserLogin component={setLoading}/></TabPanel>
-            <TabPanel value={value} index={1}><Register/></TabPanel>
+            <TabPanel value={value} index={1}><Register component2={setLoading}/></TabPanel>
           </Box> 
           </Card>
         </Grid>
